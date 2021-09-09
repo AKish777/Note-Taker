@@ -1,5 +1,9 @@
 # Note Taker
 
+## Deployment
+YouTube URL: https://youtu.be/Rr5SpIHx2tw
+Heroku URL: https://note-taker-akish777.herokuapp.com/
+
 ## User Story
 
 ```
