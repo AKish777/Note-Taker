@@ -1,20 +1,22 @@
-  
-// necessary modules
-const express = require("express");
+//Loading path and express
+const express = require('express');
+
+//Create instance of express to serve endpoints
 const app = express();
-const PORT = process.env.PORT || 3000
+const router = express.Router();
 
-// Directory and bringing information
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static(__dirname + '/public'));
-
-// Api routes
-require('./routes/data')(app);
-require('./routes/view')(app);
+const PORT = process.env.PORT || 3000;
 
 
-// Having the code listen at defined port locally
-app.listen(PORT, () => {
-    console.log(`PORT Listening ON ${PORT}`)
-});
+//Middleware
+app.use(express.static(`${__dirname}/public`));      
+app.use(express.json());                             
+app.use(express.urlencoded({ extended: true }));  
+
+app.use('/', require('./routes/pages'));
+app.use('/api/notes', require('./routes/api/notes'))
+
+
+
+//Listen for activity
+app.listen(PORT, () => console.log(`Express server currently running on port ${PORT}`));
